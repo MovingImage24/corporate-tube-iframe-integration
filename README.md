@@ -43,8 +43,6 @@ For applications with routed systems it should not be a problem `(regex example:
 </html>
 ```
 
-<div class="page" />
-
 #### Integration codding part
 ```html
 <html lang="en">
@@ -78,9 +76,29 @@ For applications with routed systems it should not be a problem `(regex example:
 </html>
 ```
 
-<div class="page" />
+### Styling
 
-**How it works**
+The iFrame integration itself doesn't deal with the `CSS` styles of any type. 
+It is expected from the parent page to deal with the styling.
+
+Example of the `CSS` code embedded into the parent page:
+
+```
+#ct-frame-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    height: 98vh;
+    margin: 0 auto;
+}
+
+#ct-frame-wrapper iframe {
+    border: none;
+    width: 100%;
+    min-height: 98vh;
+}
+```
+
+#### How it works
 
 * `embed.js` 
     > is the library to be provided to the customer who is going to integrate Corporate Tube into their system as iFrame
