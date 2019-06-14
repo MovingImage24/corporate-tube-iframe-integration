@@ -146,7 +146,7 @@ Example of the `CSS` code embedded into the parent page:
   >
   > {
   >     # Corporate tube route which has been changed
-  >     newRoute: string,
+  >     routeChanged: string,
   >
   >     # Current inner(scroll) height of the corporate tube iframe
   >     windowHeight: number,
