@@ -10,6 +10,7 @@ dist/
   - _languageData.js
   - guessLanguage.js
   - embed.js
+  - iframeResizer.min.js
 ```
 
 - Parent page should include the files in preserved order into the header section.
@@ -55,6 +56,7 @@ The second part of the URL `/channel/83281271/hr/video/23492348` will be proxied
     <script src="/static/_languageData.js"></script>
     <script src="/static/guessLanguage.js"></script>
     <script src="/static/embed.js"></script>
+    <script src="/static/iframeResizer.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         var WRAPPER = "ct-frame-wrapper";
@@ -83,6 +85,7 @@ The second part of the URL `/channel/83281271/hr/video/23492348` will be proxied
             );
           }
         });
+        window.iFrameResize();
       });
     </script>
   </head>
