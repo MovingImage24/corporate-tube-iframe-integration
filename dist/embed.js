@@ -73,7 +73,7 @@ function CtFrame(config, ctUrl) {
         "&baseUrl=" + baseUrl +
         "&lang=" + isoLang || "en";
 
-    return "<iframe src=\"" + frameUrl + "\"/>";
+    return "<iframe src=\"" + frameUrl + "\" allow=\"fullscreen\" allowfullscreen />";
   };
 
   this.render = function (isoLang) {
