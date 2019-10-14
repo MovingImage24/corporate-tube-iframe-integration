@@ -7,8 +7,6 @@
 
 ```
 dist/
-  - _languageData.js
-  - guessLanguage.js
   - embed.js
   - iframeResizer.min.js
 ```
@@ -48,13 +46,11 @@ The second part of the URL `/channel/83281271/hr/video/23492348` will be proxied
 </html>
 ```
 
-#### Integration codding part
+#### Integration code
 
 ```html
 <html lang="en">
   <head>
-    <script src="/static/_languageData.js"></script>
-    <script src="/static/guessLanguage.js"></script>
     <script src="/static/embed.js"></script>
     <script src="/static/iframeResizer.min.js"></script>
     <script>

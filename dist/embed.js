@@ -40,7 +40,9 @@ function CtFrame(config, ctUrl) {
     exchangeEventName = config.exchangeEventName;
 
   if (!layout || !exchangeEventName || !baseUrl || !wrapperId) {
-    throw new Error("All config params are mandatory. Config: { baseUrl, layout, exchangeEventName, wrapperId}");
+    throw new Error(
+      "All config params are mandatory. Config: { baseUrl, layout, exchangeEventName, wrapperId}"
+    );
   }
 
   if (!ctUrl) {
@@ -63,21 +65,31 @@ function CtFrame(config, ctUrl) {
     }
   }
 
-
-  this.getIFrame = function (isoLang) {
+  this.getIFrame = function(isoLang) {
     var iFramePath = removeHashFromUrl(getCtFramePath()),
       construct = urlHasGetParams(iFramePath) ? "&" : "?",
-      frameUrl = ctUrl + iFramePath + construct +
-        "layout=" + layout +
-        "&exchangeEventName=" + exchangeEventName +
-        "&baseUrl=" + baseUrl +
-        "&lang=" + isoLang || "en";
+      frameUrl =
+        ctUrl +
+          iFramePath +
+          construct +
+          "layout=" +
+          layout +
+          "&exchangeEventName=" +
+          exchangeEventName +
+          "&baseUrl=" +
+          baseUrl +
+          "&lang=" +
+          isoLang || "en";
 
-    return "<iframe src=\"" + frameUrl + "\" allow=\"fullscreen\" allowfullscreen />";
+    return (
+      '<iframe src="' + frameUrl + '" allow="fullscreen" allowfullscreen />'
+    );
   };
 
-  this.render = function (isoLang) {
-    document.querySelector("#" + wrapperId).innerHTML = _this.getIFrame(isoLang);
+  this.render = function(isoLang) {
+    document.querySelector("#" + wrapperId).innerHTML = _this.getIFrame(
+      isoLang
+    );
   };
 
   return this;
@@ -103,7 +115,7 @@ function CtEmbedded(configOverwrite, ctUrl) {
     var data = event.data;
 
     if (data.event === CONFIG.exchangeEventName) {
-      observers.map(function (observer) {
+      observers.map(function(observer) {
         return observer(data.payload);
       });
     }
@@ -120,16 +132,11 @@ function CtEmbedded(configOverwrite, ctUrl) {
   };
   var ctFrame = new CtFrame(CONFIG, ctUrl);
 
-  if (!("guessLanguage" in window)) {
-    throw new Error("Missing dependency: https://richtr.github.io/guessLanguage.js");
+  function getDocumentLang() {
+    return document.documentElement.lang === "de" ? "de" : "en";
   }
+  ctFrame.render(getDocumentLang());
 
-  guessLanguage.detect(
-    document.body.innerText,
-    function (isoLang) {
-      ctFrame.render(isoLang);
-    }
-  );
   window.removeEventListener("message", notifyObservers);
   window.addEventListener("message", notifyObservers);
 
@@ -138,14 +145,14 @@ function CtEmbedded(configOverwrite, ctUrl) {
    *
    * @param {Function} observer
    */
-  this.subscribe = function (observer) {
+  this.subscribe = function(observer) {
     observers.push(observer);
   };
 
   /**
    * Removes all subscribed observers
    */
-  this.unsubscribe = function () {
+  this.unsubscribe = function() {
     observers = [];
   };
 
@@ -158,7 +165,8 @@ try {
     CtEmbedded: CtEmbedded,
     CtFrame: CtFrame,
     removeHashFromUrl: removeHashFromUrl,
-    urlHasGetParams: urlHasGetParams,
+    urlHasGetParams: urlHasGetParams
   };
-} catch (e) {/* it is browser*/
+} catch (e) {
+  /* it is browser*/
 }
